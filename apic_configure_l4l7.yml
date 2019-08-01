@@ -25,7 +25,7 @@
       password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
       validate_certs: "false"
     with_items:
-     - "combined_ldev.xml"
+     - "ldev.xml"
      - "contract.xml"
      - "service_graph_template.xml"
      - "deviceSelectionPolicy.xml"
