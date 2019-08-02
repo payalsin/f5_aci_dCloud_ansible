@@ -28,6 +28,8 @@
       validate_certs: "false"
     register: eps
 
+  - debug: msg="{{eps}}"
+  
   - set_fact: 
      epg_members="{{epg_members + [item]}}"
     loop: "{{eps | json_query(query_string)}}"
