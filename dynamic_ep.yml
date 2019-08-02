@@ -18,7 +18,7 @@
       server_port: "443"
       validate_certs: "no"
 
-  - name: Get VLAN information from a Physical Logical Device Cluster
+  - name: Get end points learned from End Point group
     aci_rest:
       action: "get"
       uri: "/api/node/mo/uni/tn-{{tenant_name}}/ap-{{app_profile_name}}/epg-{{epg_name}}.json?query-target=subtree&target-subtree-class=fvIp"
@@ -33,6 +33,7 @@
     loop: "{{eps | json_query(query_string)}}"
     vars:
      query_string: "imdata[*].fvIp.attributes.addr"
+    no_log: True
 
   - set_fact:
      epg_members="{{epg_members | ipv4}}"
