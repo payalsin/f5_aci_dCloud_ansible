@@ -27,8 +27,6 @@
       password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
       validate_certs: "false"
     register: eps
-
-  - debug: msg="{{eps}}"
   
   - set_fact: 
      epg_members="{{epg_members + [item]}}"
@@ -36,6 +34,9 @@
     vars:
      query_string: "imdata[*].fvIp.attributes.addr"
 
+  - set_fact:
+     epg_members="{{epg_members | ipv4}}"
+     
   - name: Adding Pool members
     bigip_pool_member:
       provider: "{{provider}}"
