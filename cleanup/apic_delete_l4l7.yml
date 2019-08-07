@@ -8,11 +8,11 @@
   - name: Create XML POSTS from templates
     template: src={{ item.src }} dest={{ item.dest }}
     with_items:
-      - { src: '/cleanup/ldev.j2',                      dest: '/cleanup/ldev.xml' }
-      - { src: '/cleanup/contract.j2',                  dest: '/cleanup/contract.xml' }
-      - { src: '/cleanup/service_graph_template.j2',    dest: '/cleanup/service_graph_template.xml'}
-      - { src: '/cleanup/deviceSelectionPolicy.j2',     dest: '/cleanup/deviceSelectionPolicy.xml'}
-      - { src: '/cleanup/attach_cons_prov_contract.j2', dest: '/cleanup/attach_cons_prov_contract.xml'}
+      - { src: './cleanup/ldev.j2',                      dest: './cleanup/ldev.xml' }
+      - { src: './cleanup/contract.j2',                  dest: './cleanup/contract.xml' }
+      - { src: './cleanup/service_graph_template.j2',    dest: './cleanup/service_graph_template.xml'}
+      - { src: './cleanup/deviceSelectionPolicy.j2',     dest: './cleanup/deviceSelectionPolicy.xml'}
+      - { src: './cleanup/attach_cons_prov_contract.j2', dest: './cleanup/attach_cons_prov_contract.xml'}
 
   - name: Execute POSTS
     aci_rest:
@@ -24,8 +24,8 @@
       password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
       validate_certs: "false"
     with_items:
-     - "/cleanup/ldev.xml"
-     - "/cleanup/contract.xml"
-     - "/cleanup/service_graph_template.xml"
-     - "/cleanup/deviceSelectionPolicy.xml"
-     - "/cleanup/attach_cons_prov_contract.xml"
+     - "./cleanup/ldev.xml"
+     - "./cleanup/contract.xml"
+     - "./cleanup/service_graph_template.xml"
+     - "./cleanup/deviceSelectionPolicy.xml"
+     - "./cleanup/attach_cons_prov_contract.xml"
